@@ -6,6 +6,8 @@ from gtts import gTTS
 from time import ctime
 import webbrowser
 import random
+import tkinter as tk
+from tkinter import filedialog
 #import time
 
 def speak(reply):
@@ -58,10 +60,14 @@ def respond(text):
         url="https://google.nl/maps/place/"+location + "/&amp;"
         webbrowser.get().open(url)
         speak("here is the location of"+location)
-    
+    if "application" in text:
+        speak("choose the exe file of the app to open")
+        filename=filedialog.askopenfilename(initialdir="/",title="Select file",filetypes=(("executables","*exe"),("all files","*.*")))
+        os.startfile(filename)
     
 
 speak("how can i help you")
 print("how can i help you ?")
+#text=input()
 text=get_audio()
 respond(text)
